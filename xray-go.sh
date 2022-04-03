@@ -488,18 +488,18 @@ systemctl enable xray@tcp_xtls.service
 systemctl start xray@tcp_xtls.service
 
 cd /usr/bin
-wget -O add-xtls "https://raw.githubusercontent.com/akuhaa021/skript/main/add-xtls.sh"
-wget -O del-xtls "https://raw.githubusercontent.com/akuhaa021/skript/main/del-xtls.sh"
-wget -O renew-xtls "https://raw.githubusercontent.com/akuhaa021/skript/main/renew-xtls.sh"
-wget -O cek-xtls "https://raw.githubusercontent.com/akuhaa021/skript/main/cek-xtls.sh"
-wget -O add-xws "https://raw.githubusercontent.com/akuhaa021/skript/main/add-xws.sh"
-wget -O del-xws "https://raw.githubusercontent.com/akuhaa021/skript/main/del-xws.sh"
-wget -O renew-xws "https://raw.githubusercontent.com/akuhaa021/skript/main/renew-xws.sh"
-wget -O cek-xws "https://raw.githubusercontent.com/akuhaa021/skript/main/cek-xws.sh"
-wget -O add-xvless "https://raw.githubusercontent.com/akuhaa021/skript/main/add-xvless.sh"
-wget -O del-xvless "https://raw.githubusercontent.com/akuhaa021/skript/main/del-xvless.sh"
-wget -O renew-xvless "https://raw.githubusercontent.com/akuhaa021/skript/main/renew-xvless.sh"
-wget -O cek-xvless "https://raw.githubusercontent.com/akuhaa021/skript/main/cek-xvless.sh"
+wget -O add-xtls "http://178.128.49.3/xraytrgo/add-xtls.sh"
+wget -O del-xtls "http://178.128.49.3/xraytrgo/del-xtls.sh"
+wget -O renew-xtls "http://178.128.49.3/xraytrgo/renew-xtls.sh"
+wget -O cek-xtls "http://178.128.49.3/xraytrgo/cek-xtls.sh"
+wget -O add-xws "http://178.128.49.3/xraytrgo/add-xws.sh"
+wget -O del-xws "http://178.128.49.3/xraytrgo/del-xws.sh"
+wget -O renew-xws "http://178.128.49.3/xraytrgo/renew-xws.sh"
+wget -O cek-xws "http://178.128.49.3/xraytrgo/cek-xws.sh"
+wget -O add-xvless "http://178.128.49.3/xraytrgo/add-xvless.sh"
+wget -O del-xvless "http://178.128.49.3/xraytrgo/del-xvless.sh"
+wget -O renew-xvless "http://178.128.49.3/xraytrgo/renew-xvless.sh"
+wget -O cek-xvless "http://178.128.49.3/xraytrgo/cek-xvless.sh"
 
 chmod +x add-xtls
 chmod +x del-xtls
@@ -515,13 +515,10 @@ chmod +x renew-xvless
 chmod +x cek-xvless
 
 cd
-wget -qO web.tar.gz "https://raw.githubusercontent.com/akuhaa021/skript/main/web.tar.gz"
+wget -qO web.tar.gz "http://178.128.49.3/xraytrgo/web.tar.gz"
 tar xzf web.tar.gz -C /home/vps/public_html
 rm -f web.tar.gz
 
 systemctl daemon-reload
 systemctl restart nginx
 systemctl restart xray
-systemctl status nginx
-systemctl status xray
-systemctl status xray@tcp_xtls.service
