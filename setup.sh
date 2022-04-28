@@ -144,6 +144,10 @@ EOF
 systemctl daemon-reload
 systemctl enable autosett
 wget -O /etc/set.sh "https://raw.githubusercontent.com/akuhaa021/skript/main/set.sh"
+wget -q -O /usr/bin/autokill-menu "https://raw.githubusercontent.com/akuhaa021/skript/main/autokill-menu.sh" && chmod +x /usr/bin/autokill-menu
+wget -q -O /usr/bin/akill-ws "https://raw.githubusercontent.com/akuhaa021/skript/main/akill-ws.sh" && chmod +x /usr/bin/akill-ws
+wget -q -O /usr/bin/autokill-ws "https://raw.githubusercontent.com/akuhaa021/skript/main/autokill-ws.sh" && chmod +x /usr/bin/autokill-ws
+wget -q -O /usr/bin/kumbang "https://raw.githubusercontent.com/akuhaa021/skript/main/kumbang.sh" && chmod +x /usr/bin/kumbang
 chmod +x /etc/set.sh
 history -c
 clear

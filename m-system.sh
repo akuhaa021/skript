@@ -27,8 +27,8 @@ echo -e "   $green   2)$NC $yell Change Port All Account$NC"
 echo -e "   $green   3)$NC $yell Autobackup Data VPS$NC"
 echo -e "   $green   4)$NC $yell Backup Data VPS$NC"
 echo -e "   $green   5)$NC $yell Restore Data VPS$NC"
-echo -e "   $green   6)$NC $yell Webmin Menu$NC"
-echo -e "   $green   7)$NC $yell Limit Bandwith Speed Server$NC"
+echo -e "   $green   6)$NC $yell Add Bug$NC"
+echo -e "   $green   7)$NC $yell Autokill Multi-Login Menu$NC"
 echo -e "   $green   8)$NC $yell Check Running System Status Tunneling$NC"
 echo -e "   $green   9)$NC $yell Check Usage of VPS Ram$NC"
 echo -e "   $green  10)$NC $red Reboot VPS$NC"
@@ -55,8 +55,8 @@ case $opt in
 3) clear ; autobackup ; exit ;; #set.br
 4) clear ; backup ; exit ;; #set.br
 5) clear ; restore ; exit ;; #set.br
-6) clear ; webmin ; exit ;;
-7) clear ; limit-speed ; exit ;; #set.br
+6) clear ; kumbang ; exit ;;
+7) clear ; autokill-menu ; exit ;; #set.br
 8) clear ; running ; exit ;;
 9) clear ; ram ; exit ;;
 10) clear ; reboot ; exit ;;
