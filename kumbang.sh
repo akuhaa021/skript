@@ -39,7 +39,7 @@ if [[ ${done} == '1' ]]; then
     echo "$bug_digi" >$bugumobile3
     echo -ne "BUG MAXIS 1 : "
     read bug_digi
-    echo "$bug_digi" >$bugumaxis1
+    echo "$bug_digi" >$bugmaxis1
     echo -ne "BUG MAXIS 2 : "
     read bug_digi
     echo "$bug_digi" >$bugmaxis2
