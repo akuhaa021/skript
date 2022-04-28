@@ -52,17 +52,12 @@ echo -e "$green    Sila Masukkan DOMAIN, Jika TIADA KLIK Enter $NC"
 echo -e "$green   =============================================$NC"
 mkdir /etc/v2ray
 mkdir /var/lib/premium-script;
-read -p " Hostname / Domain: " host
-read -p "Server : " svr
 
 svr=/root/.svr/nameserver
 mkdir /root/.svr
-read svr 
-	echo "$svr" >$nameserver
-
-
-
-
+read -p " Hostname / Domain: " host
+read -p " Server : " svr
+cho "$svr" >$nameserver
 echo "IP=$host" >> /var/lib/premium-script/ipvps.conf
 echo "$host" >> /root/domain
 echo "$host" >> /etc/v2ray/domain
