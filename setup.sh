@@ -58,6 +58,7 @@ mkdir /root/.svr
 read -p " Hostname / Domain: " host
 read -p " Server : " svr
 echo "$svr" >$nameserver
+
 echo "IP=$host" >> /var/lib/premium-script/ipvps.conf
 echo "$host" >> /root/domain
 echo "$host" >> /etc/v2ray/domain
