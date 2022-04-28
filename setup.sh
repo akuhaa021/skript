@@ -55,12 +55,11 @@ mkdir /var/lib/premium-script;
 read -p " Hostname / Domain: " host
 read -p "Server : " svr
 
+svr=/root/.svr/nameserver
 mkdir /root/.svr
-
-
 read svr 
 	echo "$svr" >$nameserver
-svr=/root/.svr/nameserver
+
 
 
 

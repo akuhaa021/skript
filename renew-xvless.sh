@@ -6,6 +6,11 @@ MYIP=$(wget -qO- ifconfig.me/ip);
 echo "Checking VPS"
 #EDIT IZIN
 clear
+
+svr=/root/.svr/nameserver
+ns=$(sed -n '1 p' $svr | cut -d' ' -f1)
+
+
 NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		clear
@@ -42,10 +47,10 @@ sed -i "s/### $user $exp/### $user $exp4/g" /usr/local/etc/xray/vnone.json
 service cron restart
 clear
 echo ""
-echo " ━━━━━━━━━━━━━━━━━━"
+echo " ━━━━━━━━━━━━━━━━━"
 echo " Renew Vless ID Berjaya!"
-echo " ━━━━━━━━━━━━━━━━━━"
-echo " Host : Vless SG03"
+echo " ━━━━━━━━━━━━━━━━━"
+echo " Host : Vless ${ns}"
 echo " Username : $user"
 echo " Additional Active Time : $masaaktif"
 echo " New Expiration Date : $exp4"

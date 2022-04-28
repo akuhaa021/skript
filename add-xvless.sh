@@ -19,7 +19,49 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 			exit 1
 		fi
 	done
-uuid=$(cat /proc/sys/kernel/random/uuid)
+
+bugdigi1=/root/.ctech/.kumbang/digi1
+bugdigi2=/root/.ctech/.kumbang/digi2
+bugdigi3=/root/.ctech/.kumbang/digi3
+bugumobile1=/root/.ctech/.kumbang/umobile1
+bugumobile2=/root/.ctech/.kumbang/umobile2
+bugumobile3=/root/.ctech/.kumbang/umobile3
+bugmaxis1=/root/.ctech/.kumbang/maxis1
+bugmaxis2=/root/.ctech/.kumbang/maxis2
+bugmaxis3=/root/.ctech/.kumbang/maxis3
+digi1=$(sed -n '1 p' $bugdigi1 | cut -d' ' -f1)
+digi2=$(sed -n '1 p' $bugdigi2 | cut -d' ' -f1)
+digi3=$(sed -n '1 p' $bugdigi3 | cut -d' ' -f1)
+umo1=$(sed -n '1 p' $bugumobile1 | cut -d' ' -f1)
+umo2=$(sed -n '1 p' $bugumobile2 | cut -d' ' -f1)
+umo3=$(sed -n '1 p' $bugumobile3 | cut -d' ' -f1)
+maxis1=$(sed -n '1 p' $bugmaxis1 | cut -d' ' -f1)
+maxis2=$(sed -n '1 p' $bugmaxis2 | cut -d' ' -f1)
+maxis3=$(sed -n '1 p' $bugmaxis3 | cut -d' ' -f1)
+
+
+svr=/root/.svr/nameserver
+ns=$(sed -n '1 p' $svr | cut -d' ' -f1)
+
+while true $x != "ok"
+do
+echo "1. DIGI"
+echo "2. UMOBILE"
+echo "3. MAXIS"
+
+echo -ne "Input your choice : "; read list
+case "$list" in 
+   1) bug1="$digi1" bug2="$digi2" bug3="$digi3" ;break;;
+   2) bug1="$umo1" bug2="$umo2" bug3="$umo3" ;break;;
+   3) bug1="$maxis" bug2="$maxis2" bug3="$maxis3" ;break;;
+
+esac
+done
+
+echo -ne "Custom UUID [press enter for random] : "
+read uuid
+[[ -z $uuid ]] && uuid=$(cat /proc/sys/kernel/random/uuid)
+
 read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#tls$/a\### '"$user $exp"'\
@@ -29,43 +71,33 @@ sed -i '/#none$/a\### '"$user $exp"'\
 vlesslink1="vless://${uuid}@${domain}:$tls?path=/xray&security=tls&encryption=none&type=ws#${user}"
 vlesslink2="vless://${uuid}@${domain}:$none?path=/xray&encryption=none&type=ws#${user}"
 
-bugdg1="admin.google.com.st.digi.com.my"
-bugdg2="st.digi.com.my"
-bugdg3="admin.google.vault21.digi.com.my"
-bugum11="clubopen.pubgmobile.com"
-bugum2="um.gz.net.my"
-bugum3="clubopen.pubgmobile.com.music.u.com.my"
-bugmx1="watch.viu.com"
+vd1="vless://${uuid}@${bug1}.${domain}:$none?path=/xray&encryption=none&host=${bug1}&type=ws#vless_${ns}_xray_${user}"
+vd2="vless://${uuid}@${bug2}.${domain}:$none?path=/xray&encryption=none&host=${bug2}&type=ws#vless_${ns}_xray_${user}"
+vd3="vless://${uuid}@${bug3}.${domain}:$none?path=/xray&encryption=none&host=${bug3}&type=ws#vless_${ns}_xray_${user}"
 
-
-vd1="vless://${uuid}@${bugdg1}.${domain}:$none?path=/xray&encryption=none&host=${bugdg1}&type=ws#vless_SG3_xray_Digi_${user}"
-vd2="vless://${uuid}@${bugdg2}.${domain}:$none?path=/xray&encryption=none&host=${bugdg2}&type=ws#vless_SG3_xray_Digi_${user}"
-vd3="vless://${uuid}@${bugdg3}.${domain}:$none?path=/xray&encryption=none&host=${bugdg3}&type=ws#vless_SG3_xray_Digi_${user}"
-vu1="vless://${uuid}@${bugum1}.${domain}:$none?path=/xray&encryption=none&host=${bugum1}&type=ws#vless_SG3_xray_Umobile_${user}"
-vu2="vless://${uuid}@${bugum2}.${domain}:$none?path=/xray&encryption=none&host=${bugum2}&type=ws#vless_SG3_xray_Umobile_${user}"
-vu3="vless://${uuid}@${bugum3}.${domain}:$none?path=/xray&encryption=none&host=${bugum3}&type=ws#vless_SG3_xray_Umobile_${user}"
-vm1="vless://${uuid}@${bugmx1}.${domain}:$none?path=/xray&encryption=none&host=${bugmx1}&type=ws#vless_SG3_xray_Hotlink_${user}"
 
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
 
 echo -e ""
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo -e "━━━━━━━━━━━━━━━━"
 echo -e "XRay Vless Account Information"
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo -e "Host : Vless SG03"
+echo -e "━━━━━━━━━━━━━━━━"
+echo -e "Host : Vless ${ns}"
 echo -e "Username : ${user}"
 echo -e "Vless ID : ${uuid}"
 echo -e "Active Time : $masaaktif"
 echo -e "Expiration Date : $exp"
-echo -e "================================="
+echo -e "━━━━━━━━━━━━━━━━"
+echo -e ""
 echo -e "${vd1}"
+echo -e ""
 echo -e "${vd2}"
+echo -e ""
 echo -e "${vd3}"
+echo -e ""
 echo -e "================================="
-echo -e "${vu1}"
-echo -e "${vu2}"
-echo -e "${vu3}"
-echo -e "================================="
-echo -e "${vm1}"
+echo -e "Anda boleh terus menggunakan config lama."
+echo -e "Terima kasih"
+
