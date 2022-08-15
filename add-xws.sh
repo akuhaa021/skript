@@ -7,6 +7,7 @@ echo "Checking VPS"
 #EDIT IZIN
 clear
 domain=$(cat /etc/v2ray/domain)
+svr="DG VMESS01"
 tls="$(cat ~/log-install.txt | grep -w "Xray Vmess TLS" | cut -d: -f2|sed 's/ //g')"
 none="$(cat ~/log-install.txt | grep -w "Xray Vmess None TLS" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
@@ -45,17 +46,19 @@ cat>/usr/local/etc/xray/$user-none.json<<EOF
       {
       "v": "2",
       "ps": "${user}",
-      "add": "${domain}",
-      "port": "${none}",
+      "add": "cf.ctechdidik.me",
+      "port": "80",
       "id": "${uuid}",
       "aid": "2",
       "net": "ws",
       "path": "/xray",
       "type": "none",
-      "host": "",
+      "host": "dgrb.dbproject.xyz",
       "tls": "none"
 }
 EOF
+
+vd1="vless://${uuid}@${bug1}.${domain}:$none?path=/xray&encryption=none&host=${bug1}&type=ws#vless_${svr}_xray_${user}"
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmesslink1="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-tls.json)"
@@ -65,21 +68,18 @@ systemctl restart xray@none
 service cron restart
 clear
 echo -e ""
-echo -e "================================="
-echo -e "            XRAY VMESS          " 
-echo -e "================================="
-echo -e "Remarks        : ${user}"
-echo -e "Domain         : ${domain}"
-echo -e "port TLS       : ${tls}"
-echo -e "port none TLS  : ${none}"
-echo -e "id             : ${uuid}"
-echo -e "alterId        : 2"
-echo -e "Security       : auto"
-echo -e "network        : ws"
-echo -e "path           : /xray"
-echo -e "================================="
-echo -e "Link TLS       : ${vmesslink1}"
-echo -e "================================="
-echo -e "Link None TLS  : ${vmesslink2}"
-echo -e "================================="
-echo -e "Expired On     : $exp"
+echo -e "━━━━━━━━━━━━━━━━"
+echo -e "XRay VMess Account Information"
+echo -e "━━━━━━━━━━━━━━━━"
+echo -e "Host : Vless ${svr}"
+echo -e "Username : ${user}"
+echo -e "Vless ID : ${uuid}"
+echo -e "Active Time : $masaaktif"
+echo -e "Expiration Date : $exp"
+echo -e "━━━━━━━━━━━━━━━━"
+echo -e "Anda boleh terus menggunakan config lama."
+echo -e "Terima kasih"
+echo -e "━━━━━━━━━━━━━━━━"
+echo -e ""
+echo -e "${vmesslink2}"
+echo -e ""
