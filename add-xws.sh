@@ -20,7 +20,10 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 			exit 1
 		fi
 	done
-uuid=$(cat /proc/sys/kernel/random/uuid)
+
+echo -ne "Custom UUID [press enter for random] : "
+read uuid
+[[ -z $uuid ]] && uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#tls$/a\### '"$user $exp"'\
@@ -47,7 +50,7 @@ cat>/usr/local/etc/xray/$user-none.json<<EOF
       "v": "2",
       "ps": "${user}",
       "add": "cf.ctechdidik.me",
-      "port": "80",
+      "port": "${none}",
       "id": "${uuid}",
       "aid": "2",
       "net": "ws",
